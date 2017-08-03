@@ -8,18 +8,35 @@ public class RLTyper {
 
         public static void main(String[] args) throws FileNotFoundException {
                 ConfigManager cf = new ConfigManager();
-            File fileFile = new File("src/sampletext");
-            HashMap<String, ArrayList<String>> map = new HashMap<>();
-            ArrayList<String> stringArrayList = new ArrayList<>();
-            stringArrayList.add("Meme1");
-            stringArrayList.add("Meme2");
-            stringArrayList.add("Meme3");
-            stringArrayList.add("Meme4");
-            map.put("North", stringArrayList);
-            //Scanner scan=new Scanner(file);
-            System.out.println("Loaded File: " + cf.loadConfigFromFile(fileFile));
-            System.out.println(cf.formatConfigAsString(map));
+            File fileFile = new File("src/sampletext2");
+            HashMap<String, ArrayList<String>> first = new HashMap<>();
+            HashMap<String, ArrayList<String>> second = new HashMap<>();
+            HashMap<String, ArrayList<String>> third = new HashMap<>();
+            HashMap<String, ArrayList<String>> fourth = new HashMap<>();
+            ArrayList<String> arString = new ArrayList<>();
+            arString.add("This is a string");
+            arString.add("Also a String");
+            arString.add("STRINGS Here");
+            arString.add("String here as well");
 
+
+            first.put("North", arString);
+            second.put("East", arString);
+            third.put("South", arString);
+            fourth.put("West", arString);
+
+            ArrayList<HashMap> mapList = new ArrayList<>();
+            mapList.add(first);
+            mapList.add(second);
+            mapList.add(third);
+            mapList.add(fourth);
+            System.out.println(mapList);
+
+            for (HashMap hash : mapList) {
+                cf.writeConfigToFile(hash, fileFile);
+            }
+
+            System.out.println(cf.loadConfigFromFile(fileFile));
         }
 
 
