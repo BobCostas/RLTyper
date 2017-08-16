@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import com.ivan.xinput.XInputDevice;
+import com.ivan.xinput.XInputDevice;
+
 
 class StringSender extends Robot {
     private int sleepTime;
