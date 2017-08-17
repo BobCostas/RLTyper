@@ -1,7 +1,10 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
 import com.ivan.xinput.XInputDevice;
-import com.ivan.xinput.XInputDevice;
+import com.ivan.xinput.XInputDevice14;
+import com.ivan.xinput.exceptions.XInputNotLoadedException;
+
 
 
 class StringSender extends Robot {
@@ -16,7 +19,7 @@ class StringSender extends Robot {
         this(0);
     }
 
-     public int getSleepTime() {
+    public int getSleepTime() {
         /**
          * Returns the time the the robot sleeps between sending characters, in ms
          */
@@ -25,6 +28,7 @@ class StringSender extends Robot {
 
     /**
      * Sets the time, in ms for the the robot to sleep in between typing characters
+     *
      * @param newSleepTime The amount of time you want the the robot to sleep
      *                     in between typing characters
      */
@@ -64,31 +68,48 @@ public class ControllerInterface {
      */
 
     // The rate at which JInput will listen for inputs
-    private final int POLLING_RATE;
+    private int pollingRate;
     private StringSender ss = new StringSender();
 
 
     // Set polling rate, if not specified default is 200ms
     public ControllerInterface(int POLLING_RATE) throws AWTException {
-        this.POLLING_RATE = POLLING_RATE;
+        this.pollingRate = POLLING_RATE;
     }
 
     public ControllerInterface() throws AWTException {
-        this.POLLING_RATE = 200;
+        this.pollingRate = 200;
     }
 
     // Getter for POLLING_RATE
     public int getPollingRate() {
-        return this.POLLING_RATE;
+        return this.pollingRate;
     }
 
-    public String setPollingRate() {
-        return "You cannot change the polling rate once it" +
-                "has been set.";
+    public void setPollingRate(int newPollingRate) {
+        this.pollingRate = newPollingRate;
     }
 
     public void type(String messageToType) throws AWTException {
         ss.typeString(messageToType);
     }
 
+    /**
+     *
+     * @return The XInput device found by JXInput
+     * @throws XInputNotLoadedException
+     */
+    public XInputDevice getController() throws XInputNotLoadedException {
+        return XInputDevice.getDeviceFor(0);
+    }
+
+    /**
+     *
+     * @param controller A controller device found by getController
+     * @return The current state of the DPAD
+     * @throws XInputNotLoadedException
+     */
+    public int getDpadState(XInputDevice controller) throws XInputNotLoadedException {
+        return controller.getComponents().getAxes().dpad;
+    }
 }
