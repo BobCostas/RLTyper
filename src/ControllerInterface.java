@@ -113,6 +113,7 @@ public class ControllerInterface  {
     public int getDpadState(XInputDevice controller) throws XInputNotLoadedException {
         return controller.getComponents().getAxes().dpad;
     }
+<<<<<<< HEAD
 
     /**
      * The currentLevel determines whether or not the DPad has been pressed,
@@ -154,4 +155,6 @@ public class ControllerInterface  {
 
         }
     }
+=======
+>>>>>>> f6c043519859ac388f96a5f6364208769eb009a9
 }
