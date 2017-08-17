@@ -1,3 +1,6 @@
+import com.ivan.xinput.exceptions.XInputNotLoadedException;
+
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -6,7 +9,7 @@ import java.util.HashMap;
 
 public class RLTyper {
 
-        public static void main(String[] args) throws FileNotFoundException {
+        public static void main(String[] args) throws FileNotFoundException, AWTException, XInputNotLoadedException, InterruptedException {
                 ConfigManager cf = new ConfigManager();
             File fileFile = new File("src/sampletext2");
             HashMap<String, ArrayList<String>> first = new HashMap<>();
@@ -37,7 +40,16 @@ public class RLTyper {
             }
 
             System.out.println(cf.loadConfigFromFile(fileFile));
+            ControllerInterface ci = new ControllerInterface();
+
+            while (ci.getController().poll()) {
+                int dpadState = ci.getDpadState(ci.getController());
+                if (dpadState != -1) ci.type(first.get("North").get(ci.calculateStringToSend(ci.getCurentLevel())));
+                    Thread.sleep(ci.getPollingRate());
+                }
+            
         }
+
 
 
 }
