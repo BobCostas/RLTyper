@@ -70,7 +70,7 @@ public class ControllerInterface  {
     // The rate at which JInput will listen for inputs
     private int pollingRate;
     private StringSender ss = new StringSender();
-    private int currentLevel = 1;
+    private int currentLevel = 0;
 
 
     // Set polling rate, if not specified default is 200ms
