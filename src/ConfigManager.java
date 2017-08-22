@@ -69,4 +69,13 @@ public class ConfigManager {
         // Close the file, clear our buffer
         out.close();
     }
+
+    /**
+     *
+     * @param hash a hashmap with only one key that we want to get the key of
+     * @return that key turned into a string
+     */
+    public String getKey(HashMap hash) {
+        return hash.keySet().iterator().next().toString();
+    }
 }
