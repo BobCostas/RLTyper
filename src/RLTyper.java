@@ -10,7 +10,8 @@ import java.util.HashMap;
 public class RLTyper {
 
         public static void main(String[] args) throws FileNotFoundException, AWTException, XInputNotLoadedException, InterruptedException {
-                ConfigManager cf = new ConfigManager();
+            ConfigManager cf = new ConfigManager();
+            HashMap currentHashMap;
             File fileFile = new File("src/sampletext2");
             HashMap<String, ArrayList<String>> first = new HashMap<>();
             HashMap<String, ArrayList<String>> second = new HashMap<>();
@@ -44,10 +45,21 @@ public class RLTyper {
 
             while (ci.getController().poll()) {
                 int dpadState = ci.getDpadState(ci.getController());
-                if (dpadState != -1) ci.type(first.get("North").get(ci.calculateStringToSend(ci.getCurentLevel())));
-                    Thread.sleep(ci.getPollingRate());
-                }
-            
+                 if (dpadState != -1) {
+                     if (ci.getCurentLevel() == 0) {
+                        currentHashMap = mapList.get(ci.calculateStringToSend(dpadState));
+                        ci.setCurrentLevel(1);
+                     }
+                     else {
+                         ci.type(currentHashMap.get(
+                                 cf.getKey(currentHashMap)).get(
+                                    ci.calculateStringToSend(
+                                         dpadState)));
+                         // return the currenLevel to original state
+                         ci.setCurrentLevel(0);
+                     }
+                 }
+            }
         }
 
 
