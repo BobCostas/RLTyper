@@ -3,7 +3,6 @@ import com.ivan.xinput.exceptions.XInputNotLoadedException;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
