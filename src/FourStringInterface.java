@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class FourStringInterface {
     /**
@@ -22,6 +24,13 @@ public class FourStringInterface {
     private String secondString;
     private String thirdString;
     private String fourthString;
+    
+    // Swing components to be used
+    private JFrame frame;
+    private JLabel firstLabel;
+    private JLabel secondLabel;
+    private JLabel thirdLabel;
+    private JLabel fourthLabel;
 
     public void setPositionX(int newX) {
         this.positionX = newX;
@@ -47,7 +56,10 @@ public class FourStringInterface {
      *                be placed in a JLabel for display
      */
     public void setStrings(ArrayList<String> strings) {
-
+        this.firstString = strings.get(0);
+        this.secondString = strings.get(1); 
+        this.thirdString = strings.get(2);
+        this.fourthString = strings.get(3);
     }
 
     /**
