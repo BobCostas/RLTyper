@@ -41,29 +41,34 @@ public class RLTyper {
 
             ControllerInterface ci = new ControllerInterface();
 
-            while (ci.getController().poll()) {
-                int dpadState = ci.getDpadState(ci.getController());
-                 if (dpadState != -1) {
-                     HashMap<String, ArrayList<String>> currentMap = mapList.get(ci.calculateStringToSend(dpadState));
-                     if (ci.getCurentLevel() == 0) {
-                         System.out.println(currentMap.get(cf.getKey(currentMap)));
-                        ci.setCurrentLevel(1);
-                     }
-                     else {
-                         // Calculate the message to type, and then type it
-                         ci.type(
-                                 currentMap.get(
-                                         cf.getKey(currentMap)).get(
-                                         ci.calculateStringToSend(dpadState)
-                                 )
-                         );
-                         // return the CurrentLevel to its default state
-                         ci.setCurrentLevel(0);
-                     }
-                 }
-
-                Thread.sleep(ci.getPollingRate());
-            }
+//            while (ci.getController().poll()) {
+//                int dpadState = ci.getDpadState(ci.getController());
+//                 if (dpadState != -1) {
+//                     HashMap<String, ArrayList<String>> currentMap = mapList.get(ci.calculateStringToSend(dpadState));
+//                     if (ci.getCurentLevel() == 0) {
+//                         System.out.println(currentMap.get(cf.getKey(currentMap)));
+//                        ci.setCurrentLevel(1);
+//                     }
+//                     else {
+//                         // Calculate the message to type, and then type it
+//                         ci.type(
+//                                 currentMap.get(
+//                                         cf.getKey(currentMap)).get(
+//                                         ci.calculateStringToSend(dpadState)
+//                                 )
+//                         );
+//                         // return the CurrentLevel to its default state
+//                         ci.setCurrentLevel(0);
+//                     }
+//                 }
+//
+//                Thread.sleep(ci.getPollingRate());
+//            }
+            FourStringInterface fi = new FourStringInterface();
+            fi.setPositions(500, 500);
+            fi.setStrings(arString);
+            fi.initializeFrame("RLTyper");
+            fi.showFrame();
         }
 
 
