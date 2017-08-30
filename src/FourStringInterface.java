@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -62,6 +63,13 @@ public class FourStringInterface {
         this.fourthString = strings.get(3);
     }
 
+    private void setLabelText() {
+        this.firstLabel = new JLabel(this.firstString, JLabel.LEFT);
+        this.secondLabel = new JLabel(this.secondString, JLabel.LEFT);
+        this.thirdLabel = new JLabel(this.thirdString, JLabel.LEFT);
+        this.fourthLabel = new JLabel(this.fourthString, JLabel.LEFT);
+    }
+
     /**
      * Sets both the X and Y positions of the JFrame
      * @param newX The new X position on the screen for the JFrame
@@ -70,5 +78,31 @@ public class FourStringInterface {
     public void setPositions(int newX, int newY) {
         this.positionX = newX;
         this.positionY = newY;
+    }
+
+
+
+    /**
+     * createFrame initializes the JFrame that is going to be used
+     * to display the strings we are using for the RLTyper
+     * It creates the frame, and populates it with labels
+     * @param frameTitle title of teh Frame that we are going to populate
+     */
+    public void initializeFrame(String frameTitle) {
+       this.frame = new JFrame(frameTitle) ;
+       this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+       this.frame.setBounds(this.positionX, this.positionY, 20, 20);
+        Container contentPane = frame.getContentPane();
+       this.setLabelText();
+       contentPane.add(firstLabel);
+       contentPane.add(secondLabel);
+       contentPane.add(thirdLabel);
+       contentPane.add(fourthLabel);
+       frame.pack();
+
+    }
+
+    public void showFrame() {
+        this.frame.setVisible(true);
     }
 }
