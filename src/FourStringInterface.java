@@ -92,12 +92,12 @@ public class FourStringInterface {
        this.frame = new JFrame(frameTitle) ;
        this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        this.frame.setBounds(this.positionX, this.positionY, 20, 20);
-        Container contentPane = frame.getContentPane();
+       frame.setLayout(new GridLayout(4, 1));
        this.setLabelText();
-       contentPane.add(firstLabel);
-       contentPane.add(secondLabel);
-       contentPane.add(thirdLabel);
-       contentPane.add(fourthLabel);
+       frame.add(firstLabel);
+       frame.add(secondLabel);
+       frame.add(thirdLabel);
+       frame.add(fourthLabel);
        frame.pack();
 
     }
