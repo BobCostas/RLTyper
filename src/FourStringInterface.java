@@ -105,4 +105,5 @@ public class FourStringInterface {
     public void showFrame() {
         this.frame.setVisible(true);
     }
+    public void hideFrame() {this.frame.setVisible(false);}
 }
